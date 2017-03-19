@@ -1,6 +1,16 @@
-#include "add.h"
+#include "CreateTree.h"
 #include <iostream>
-
-int main() {
-  std::cout << "2 + 2 = " << add(2, 2) << std::endl;
+#include <stdio.h>
+void print(CNode *root) {
+    if (root) {
+        print(root->left);
+        std::cout << root->val << ' ';
+        print(root->right);
+    }
 }
+int main() {
+    int a[] = {2, 3, 5, 7, 9};
+    CNode *tree = CreateTree(a, 5);
+    print(tree);
+}
+
