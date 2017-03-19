@@ -1,4 +1,4 @@
-#ifndef INCLUDE_FIND_H_
+#ifndef INCLUDE_CREATETREE_H_
 #define INCLUDE_FIND_H_
 
 struct CNode {
@@ -8,4 +8,4 @@ struct CNode {
 };
 CNode** find(CNode**root, int v);
 CNode* CreateTree(int *a, int n);
-#endif  // INCLUDE_FIND_H_
+#endif  // INCLUDE_CREATETREE_H_
