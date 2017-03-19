@@ -11,7 +11,7 @@ void TestTree(CNode*root,  int* a) {
 TEST(CreateTree,  can_create_search_tree_with_odd_number_of_items) {
     int a[] = {2, 3, 5, 7, 9};
     CNode *tree = CreateTree(a, 5);
-    int *res = (int*)malloc(sizeof(int)*5);
+    int res[5];
     TestTree(tree,  res);
     i = 0;
     for (int i = 0; i < 5; i++)
@@ -20,7 +20,7 @@ TEST(CreateTree,  can_create_search_tree_with_odd_number_of_items) {
 TEST(CreateTree,  can_create_search_tree_with_even_number_of_items) {
     int a[] = {2, 3, 5, 7, 9, 10};
     CNode *tree = CreateTree(a, 6);
-    int *res = (int*)malloc(sizeof(int)*6);
+    int res[6];
     TestTree(tree,  res);
     i = 0;
     for (int i = 0; i < 6; i++)
