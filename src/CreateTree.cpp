@@ -21,7 +21,7 @@ CNode** find(CNode**root, int v) {
 CNode* CreateTree(int *a, int n) {
     if ( (n < 1) || (a == 0) )
         throw 1;
-    for(int i = 0; i < n - 1; ++i)
+    for (int i = 0; i < n - 1; ++i)
         if (a[i] > a[i + 1])
             throw 1;
     std::queue <CNode*> q1;

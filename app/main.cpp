@@ -1,7 +1,7 @@
 #include "CreateTree.h"
 #include <iostream>
 #include <stdio.h>
-void print(CNode*root) {
+void print(CNode *root) {
     if (root) {
         print(root->left);
         std::cout << root->val << ' ';
