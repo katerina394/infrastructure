@@ -15,7 +15,7 @@ TEST(arrays, work_right_with_two_elems) {
     int *res = arrays(a, 2);
     for (int i = 0; i < 2; ++i) {
         EXPECT_EQ(exp[i], res[i]);
-	}
+    }
 }
 TEST(arrays, work_right_with_one_elem) {
     int a[] = {2};
