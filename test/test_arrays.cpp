@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "add.h"
+#include "arrays.h"
 
 TEST(arrays, work_right) {
     int a[] = { 1, 2, 3, 4, 2 };
