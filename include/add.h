@@ -1,6 +1,8 @@
 #ifndef INCLUDE_ADD_H_
 #define INCLUDE_ADD_H_
 
-int add(int x, int y);
-
+struct CNode {
+	int x, y;
+};
+char* ways(CNode m);
 #endif  // INCLUDE_ADD_H_
