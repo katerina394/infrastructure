@@ -36,7 +36,8 @@ TEST(test, work_right) {
     CNode a;
     a.x = 2;
     a.y = 1;
-    CNode b = test("EWESN");
+    char *s = "EWESN";
+    CNode b = test(s);
     EXPECT_EQ(a.x, b.x);
     EXPECT_EQ(a.y, b.y);
 }
