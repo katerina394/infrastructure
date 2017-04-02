@@ -1,4 +1,4 @@
-#include "add.h"
+#include "ways.h"
 #include "math.h"
 #include "stdlib.h"
 int add(int x, int y) {
@@ -10,32 +10,30 @@ char* ways(CNode m) {
     char * res = 0;
     while (tmpx != m.x) {
         tmpx += i;
-        res = (char*)realloc(res, abs(i)*sizeof(char));
+        res = reinterpret_cast<char*>(realloc(res, abs(i)*sizeof(char)));
         if (i > 0) {
             res[abs(i) - 1] = 'E';
             i = -(i + 1);
-        }
-        else {
+        } else {
             res[abs(i) - 1] = 'W';
             i = -(i - 1);
         }
     }
     i = abs(i);
-    if (m.y > 0) 
+    if (m.y > 0)
         i = -i;
     while (tmpy != m.y) {
         tmpy += i;
-        res = (char*)realloc(res, abs(i)*sizeof(char));
+        res = reinterpret_cast<char*>(realloc(res, abs(i)*sizeof(char)));
         if (i > 0) {
             res[abs(i) - 1] = 'N';
             i = -(i + 1);
-        }
-        else {
+        } else {
             res[abs(i) - 1] = 'S';
             i = -(i - 1);
         }
     }
-    res = (char*)realloc(res, abs(i)*sizeof(char));
-    res[abs(i) - 1] = '0';
+    res = reinterpret_cast<char*>(realloc(res, abs(i)*sizeof(char)));
+    res[abs(i) - 1] = '\0';
     return res;
 }
