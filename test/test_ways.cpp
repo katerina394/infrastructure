@@ -28,7 +28,7 @@ TEST(ways, can_find_way) {
     a.x = 2;
     a.y = 1;
     char *res = ways(a);
-    char *exp = "EWESN";
+    char exp[] = "EWESN";
     for (int i = 0; i < 5; i++)
         EXPECT_EQ(res[i], exp[i]);
 }
@@ -36,7 +36,7 @@ TEST(test, work_right) {
     CNode a;
     a.x = 2;
     a.y = 1;
-    char *s = "EWESN";
+    char s[] = "EWESN";
     CNode b = test(s);
     EXPECT_EQ(a.x, b.x);
     EXPECT_EQ(a.y, b.y);
