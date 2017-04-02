@@ -1,4 +1,4 @@
-#include "add.h"
+#include "ways.h"
 #include <iostream>
 
 int main() {
