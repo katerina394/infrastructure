@@ -28,7 +28,7 @@ vector<int> Dijkstra(vector < vector < pair<int, int> > > g, int start) {
     }
     return d;
 }
-vector < vector < pair<int, int> > > CreateGraph(char filename[]) {
+/*vector < vector < pair<int, int> > > CreateGraph(char filename[]) {
     std::ifstream file(filename);
     int N, n;
     file >> N;
@@ -42,3 +42,4 @@ vector < vector < pair<int, int> > > CreateGraph(char filename[]) {
     }
     return g;
 }
+*/
