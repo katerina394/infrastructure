@@ -6,7 +6,8 @@
 #define pair std::pair
 #define vector std::vector
 vector<int> Dijkstra(vector < vector < pair<int, int> > > g, int start) {
-    if ( g.empty() || (start < 1) || (start > static_cast<int>(g.size())) ) throw 1;
+    if ( g.empty() || (start < 1) || (start > static_cast<int>(g.size())) )
+        throw 1;
     vector<int> d(g.size(), INF);
     int v;
     d[start-1] = 0;
