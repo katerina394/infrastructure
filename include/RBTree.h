@@ -3,25 +3,40 @@
 #include "rbnode.h"
 template <class T>
 class RBTree {
-    rbnode<T>* root;
+	rbnode<T>* root;
     void RotateLeft(rbnode<T> *x);
     void RotateRight(rbnode<T> *x);
     void InsertFixup(rbnode<T> *x);
     void DeleteFixup(rbnode<T> *x);
 public:
-    RBTree(rbnode<T> rt = NIL);
+    RBTree();
+    RBTree(T key);
     ~RBTree(void);
-    RBTree Insert(T v);
-    RBTree Delete(T v);
+	rbnode<T>* GetRoot();
+    void Insert(T v);
+    void Delete(T v);
     rbnode<T>* Find(T v);
 };
-
 template <class T>
-RBTree<T>::RBTree(rbnode<T> rt) {
-    root = rt;
+RBTree<T>::RBTree() {
+	root = NIL;
+}
+template <class T>
+RBTree<T>::RBTree(T key) {
+    root = new rbnode<T>;
+    root->val = key;
+    root->color = 0;
+    root->left = root->right = NIL;
+    root->parent = 0;
 }
 template <class T>
 RBTree<T>::~RBTree() {
+    while (root != NIL) 
+        Delete(root->val);
+}
+template <class T>
+rbnode<T>* RBTree<T>::GetRoot() {
+	return root;
 }
 template <class T>
 void RBTree<T>::RotateLeft(rbnode<T> *x) {
@@ -44,12 +59,12 @@ void RBTree<T>::RotateLeft(rbnode<T> *x) {
 }
 template <class T>
 void RBTree<T>::RotateRight(rbnode<T> *x) {
-    y = x->left;
+    rbnode<T> *y = x->left;
     x->left = y->right;
     if (y->right != NIL)
         y->right->parent = x;
     y->parent = x->parent;
-    if (x.parent != 0) {
+    if (x->parent != 0) {
         if (x = x->parent->left) {
             x->parent->left = y;
         } else {
@@ -101,7 +116,7 @@ void RBTree<T>::InsertFixup(rbnode<T> *x) {
     root->color = 0;
 }
 template <class T>
-RBTree RBTree<T>::Insert(T v) {
+void RBTree<T>::Insert(T v) {
     rbnode<T> *tmp = root, *ptmp = 0, *x = 0;
     while (tmp != NIL) {
         if (tmp->val == v) throw 1;
@@ -127,7 +142,6 @@ RBTree RBTree<T>::Insert(T v) {
         root = x;
     }
     InsertFixup(x);
-    return *this;
 }
 template <class T>
 void RBTree<T>::DeleteFixup(rbnode<T> *x) {
@@ -185,10 +199,10 @@ void RBTree<T>::DeleteFixup(rbnode<T> *x) {
     x->color = 0;
 }
 template <class T>
-RBTree RBTree<T>::Delete(T v) {
-    rbnode<T> *x, *y, *tmp;
-    tmp = root;
-    while (tmp != NIL) {
+void RBTree<T>::Delete(T v) {
+    rbnode<T> *x, *y, *z;
+    z = root;
+    while (z != NIL) {
         if (z->val == v) {
             break;
         } else {
@@ -224,7 +238,6 @@ RBTree RBTree<T>::Delete(T v) {
     if (y != z) z->val = y->val;
     if (y->color == 0) DeleteFixup(x);
     delete y;
-    return *this;
 }
 template <class T>
 rbnode<T>* RBTree<T>::Find(T v) {
