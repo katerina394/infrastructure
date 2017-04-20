@@ -16,7 +16,8 @@ TEST(DijkstraFourHeap, work_right_for_graph_with_one_vertex) {
     EXPECT_EQ(res[0], 0);
 }
 TEST(DijkstraFourHeap, work_right_for_connected_graph) {
-    vector < vector < pair<int, int> > > gr = CreateGraph("COPYONLY");
+    char filename[] = "COPYONLY";
+    vector < vector < pair<int, int> > > gr = CreateGraph(filename);
     vector <int> res = DijkstraFourHeap(gr, 1);
     int exp[] = {0, 4, 6, 5, 8, 6, 8};
     for (int i = 0; i < 7; ++i)
