@@ -4,7 +4,7 @@
 template <class T>
 class PQFHeap {
     FourHeap<T> h;
-public:
+ public:
     T Min();
     void DeleteMin();
     void Insert(T key);

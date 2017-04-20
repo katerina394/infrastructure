@@ -4,7 +4,7 @@
 template <class T>
 class PQRBTree {
     RBTree<T> tree;
-public:
+ public:
     rbnode<T>* Find(T key);
     rbnode<T>* Min();
     void Insert(T key);

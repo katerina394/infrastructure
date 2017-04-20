@@ -10,9 +10,9 @@ class RBTree {
     void RotateRight(rbnode<T> *x);
     void InsertFixup(rbnode<T> *x);
     void DeleteFixup(rbnode<T> *x);
-public:
+ public:
     RBTree();
-    RBTree(T key);
+    explicit RBTree(T key);
     ~RBTree(void);
     rbnode<T>* GetRoot();
     void Insert(T v);
@@ -144,10 +144,10 @@ void RBTree<T>::Insert(T v) {
     x = new rbnode<T>;
     x->parent = ptmp;
     x->left = x->right = reinterpret_cast<rbnode<T>*>(NIL);
-    x->color = 1;    
+    x->color = 1;
     x->val = v;
     if (ptmp != 0) {
-        if ( v < ptmp->val) {
+        if (v < ptmp->val) {
             ptmp->left = x;
         } else {
             ptmp->right = x;
@@ -266,7 +266,7 @@ rbnode<T>* RBTree<T>::Find(T v) {
                 tmp = tmp->left;
             } else {
                 tmp = tmp->right;
-            }    
+            }
         }
     }
     throw std::logic_error("this key does not exist");

@@ -9,7 +9,7 @@ TEST(DijkstraRBTree, throws_when_parametrs_are_incorrect) {
     EXPECT_ANY_THROW(vector <int> res = DijkstraRBTree(gr1, 1));
     vector < vector < pair<int, int> > > gr2(7);
     EXPECT_ANY_THROW(vector <int> res = DijkstraRBTree(gr2, 8));
-}  
+}
 TEST(DijkstraRBTree, work_right_for_graph_with_one_vertex) {
     vector < vector < pair<int, int> > > gr(1);
     vector <int> res = DijkstraRBTree(gr, 1);

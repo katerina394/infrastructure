@@ -7,7 +7,7 @@ class FourHeap {
     vector<T> heap;
     int child(int i);
     int parent(int i);
-public:
+ public:
     T Min();
     void DeleteMin();
     void Insert(T key);
