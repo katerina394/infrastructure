@@ -80,7 +80,7 @@ void RBTree<T>::RotateRight(rbnode<T> *x) {
         y->right->parent = x;
     y->parent = x->parent;
     if (x->parent != 0) {
-        if (x = x->parent->left) {
+        if (x == x->parent->left) {
             x->parent->left = y;
         } else {
             x->parent->right = y;
