@@ -3,6 +3,7 @@
 #include "rbnode.h"
 #include <queue>
 #include <stack>
+#include <stdexcept>
 template <class T>
 class RBTree {
     rbnode<T>* root;

@@ -1,6 +1,7 @@
 #ifndef INCLUDE_FOURHEAP_H_
 #define INCLUDE_FOURHEAP_H_
 #include <vector>
+#include <stdexcept>
 #define vector std::vector
 template <class T>
 class FourHeap {

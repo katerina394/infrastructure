@@ -2,6 +2,7 @@
 #include "Dijkstra.h"
 #include <vector>
 #include <utility>
+#include <stdexcept>
 #define pair std::pair
 #define vector std::vector
 vector<int> DijkstraFourHeap(vector < vector < pair<int, int> > > g,
