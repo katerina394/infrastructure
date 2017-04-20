@@ -6,6 +6,6 @@ struct rbnode {
     rbnode *left, *right, *parent;
     int color; // BLACK = 0, RED = 1
 };
-rbnode<int> NILnode = {0, 0, 0, 0, 0};
+extern rbnode<int> NILnode;
 #define NIL &NILnode
 #endif  // INCLUDE_RBNODE_H_

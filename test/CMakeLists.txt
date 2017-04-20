@@ -16,3 +16,4 @@ endif()
 add_executable(tests ${CPPS} ${HPPS})
 
 target_link_libraries(tests gtest code_lib  ${CMAKE_THREAD_LIBS_INIT})
+ CONFIGURE_FILE(../test/Graph.txt ${tests} COPYONLY)

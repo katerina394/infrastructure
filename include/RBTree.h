@@ -1,9 +1,11 @@
 #ifndef INCLUDE_RBTREE_H_
 #define INCLUDE_RBTREE_H_
 #include "rbnode.h"
+#include <queue>
+#include <stack>
 template <class T>
 class RBTree {
-	rbnode<T>* root;
+    rbnode<T>* root;
     void RotateLeft(rbnode<T> *x);
     void RotateRight(rbnode<T> *x);
     void InsertFixup(rbnode<T> *x);
@@ -12,37 +14,49 @@ public:
     RBTree();
     RBTree(T key);
     ~RBTree(void);
-	rbnode<T>* GetRoot();
+    rbnode<T>* GetRoot();
     void Insert(T v);
     void Delete(T v);
     rbnode<T>* Find(T v);
+    rbnode<T>* Min();
+    bool IsRBTree();
 };
 template <class T>
 RBTree<T>::RBTree() {
-	root = NIL;
+    root = reinterpret_cast<rbnode<T>*>(NIL);
 }
 template <class T>
 RBTree<T>::RBTree(T key) {
     root = new rbnode<T>;
     root->val = key;
     root->color = 0;
-    root->left = root->right = NIL;
+    root->left = root->right = reinterpret_cast<rbnode<T>*>(NIL);
     root->parent = 0;
 }
 template <class T>
 RBTree<T>::~RBTree() {
-    while (root != NIL) 
-        Delete(root->val);
+    std::queue<rbnode<T>*> q;
+    if (root != reinterpret_cast<rbnode<T>*>(NIL)) q.push(root);
+    rbnode<T>* tmp;
+    while (!q.empty()) {
+        tmp = q.front();
+        q.pop();
+        if (tmp->left != reinterpret_cast<rbnode<T>*>(NIL))
+            q.push(tmp->left);
+        if (tmp->right != reinterpret_cast<rbnode<T>*>(NIL))
+            q.push(tmp->right);
+        delete tmp;
+    }
 }
 template <class T>
 rbnode<T>* RBTree<T>::GetRoot() {
-	return root;
+    return root;
 }
 template <class T>
 void RBTree<T>::RotateLeft(rbnode<T> *x) {
     rbnode<T> *y = x->right;
     x->right = y->left;
-    if (y->left != NIL)
+    if (y->left != reinterpret_cast<rbnode<T>*>(NIL))
         y->left->parent = x;
     y->parent = x->parent;
     if (x->parent != 0) {
@@ -61,7 +75,7 @@ template <class T>
 void RBTree<T>::RotateRight(rbnode<T> *x) {
     rbnode<T> *y = x->left;
     x->left = y->right;
-    if (y->right != NIL)
+    if (y->right != reinterpret_cast<rbnode<T>*>(NIL))
         y->right->parent = x;
     y->parent = x->parent;
     if (x->parent != 0) {
@@ -118,8 +132,8 @@ void RBTree<T>::InsertFixup(rbnode<T> *x) {
 template <class T>
 void RBTree<T>::Insert(T v) {
     rbnode<T> *tmp = root, *ptmp = 0, *x = 0;
-    while (tmp != NIL) {
-        if (tmp->val == v) throw 1;
+    while (tmp != reinterpret_cast<rbnode<T>*>(NIL)) {
+        if (tmp->val == v) throw std::logic_error("this key already exist");
         ptmp = tmp;
         if (v < tmp->val) {
             tmp = tmp->left;
@@ -129,7 +143,7 @@ void RBTree<T>::Insert(T v) {
     }
     x = new rbnode<T>;
     x->parent = ptmp;
-    x->left = x->right = NIL;
+    x->left = x->right = reinterpret_cast<rbnode<T>*>(NIL);
     x->color = 1;    
     x->val = v;
     if (ptmp != 0) {
@@ -202,7 +216,7 @@ template <class T>
 void RBTree<T>::Delete(T v) {
     rbnode<T> *x, *y, *z;
     z = root;
-    while (z != NIL) {
+    while (z != reinterpret_cast<rbnode<T>*>(NIL)) {
         if (z->val == v) {
             break;
         } else {
@@ -213,14 +227,16 @@ void RBTree<T>::Delete(T v) {
             }
         }
     }
-    if (z == NIL) throw 1;
-    if ( (z->left == NIL) || (z->right == NIL) ) {
+    if (z == reinterpret_cast<rbnode<T>*>(NIL))
+        throw std::logic_error("this key does not exist");
+    if ( (z->left == reinterpret_cast<rbnode<T>*>(NIL)) ||
+       (z->right == reinterpret_cast<rbnode<T>*>(NIL)) ) {
         y = z;
     } else {
         y = z->right;
-        while (y->left != NIL) y = y->left;
+        while (y->left != reinterpret_cast<rbnode<T>*>(NIL)) y = y->left;
     }
-    if (y->left != NIL) {
+    if (y->left != reinterpret_cast<rbnode<T>*>(NIL)) {
         x = y->left;
     } else {
         x = y->right;
@@ -253,6 +269,74 @@ rbnode<T>* RBTree<T>::Find(T v) {
             }    
         }
     }
-    throw 1;
+    throw std::logic_error("this key does not exist");
+}
+template <class T>
+rbnode<T>* RBTree<T>::Min() {
+    rbnode<T>* tmp = root;
+    while (tmp->left != reinterpret_cast<rbnode<T>*>(NIL))
+        tmp = tmp->left;
+    return tmp;
+}
+template <class T>
+bool RBTree<T>::IsRBTree() {
+    std::queue<rbnode<T>*> q;
+    if (root->color == 1) return false;
+    if (root != reinterpret_cast<rbnode<T>*>(NIL)) {
+        q.push(root);
+    } else {
+        return true;
+    }
+    rbnode<T>* tmp;
+    while (!q.empty()) {
+        tmp = q.front();
+        q.pop();
+        if ((tmp->color == 1) && ((tmp->left->color == 1) ||
+            (tmp->right->color == 1))) return false;
+        if (tmp->left != reinterpret_cast<rbnode<T>*>(NIL))
+            q.push(tmp->left);
+        if (tmp->right != reinterpret_cast<rbnode<T>*>(NIL))
+            q.push(tmp->right);
+    }
+    std::stack<rbnode<T>*> s1;
+    std::stack<int> s2;
+    std::stack<bool> s3;
+    int lh, rh;
+    s1.push(root);
+    s3.push(false);
+    while (!s1.empty()) {
+        tmp = s1.top();
+        if (s3.top() == false) {
+            s3.pop();
+            s3.push(true);
+            if (tmp == NIL) {
+                s2.push(1);
+                s1.pop();
+                s3.pop();
+                continue;
+            }
+            s1.push(tmp->right);
+            s3.push(false);
+            s1.push(tmp->left);
+            s3.push(false);
+        } else {
+            rh = s2.top();
+            s2.pop();
+            lh = s2.top();
+            s2.pop();
+            if (rh != lh) {
+                return false;
+            } else {
+                s1.pop();
+                s3.pop();
+                if (tmp->color == 0) {
+                    s2.push(lh+1);
+                } else {
+                    s2.push(lh);
+                }
+            }
+        }
+    }
+    return true;
 }
 #endif  // INCLUDE_RBTREE_H_
