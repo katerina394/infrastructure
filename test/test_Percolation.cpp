@@ -9,4 +9,4 @@ TEST(Percolation, works) {
     m[2][1] = 1;
     EXPECT_TRUE(Percolation(m));
     Probability(3, 100);
- }
+}
