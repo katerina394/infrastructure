@@ -20,7 +20,7 @@ void Union(std::vector<int> *a, std::vector<int> *b, int v1, int v2) {
 bool Percolation(std::vector<std::vector<int>> m) {
     int mSize = m.size();
     int n = mSize*mSize+2;
-	std::vector<int> c(n);
+    std::vector<int> c(n);
     std::vector<int> d(n, 1);
     for (int i = 0; i < n; ++i)
         c[i] = i;
