@@ -259,7 +259,7 @@ void RBTree<T>::Delete(T v) {
 template <class T>
 rbnode<T>* RBTree<T>::Find(T v) {
     rbnode<T> *tmp = root;
-    while (tmp != 0) {
+    while (tmp != reinterpret_cast<rbnode<T>*>(NIL)) {
         if (v == tmp->val) {
             return tmp;
         } else {
