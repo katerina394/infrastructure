@@ -59,20 +59,20 @@ std::vector<std::vector<int>> PercolationUF(std::vector<std::vector<int>> m) {
             if (Find(c, i*mSize + j + 1) != Find(c, 0)) m[i][j] = 0;
     return m;
 }
-void BFS(std::vector<std::vector<int>> m, std::vector<std::vector<int>> &b,
+void BFS(std::vector<std::vector<int>> m, std::vector<std::vector<int>> *b,
     index y) {
     index* temp;
     int mSize = m.size();
     std::queue<index> q;
     q.push(y);
-    b[y.str][y.stlb] = 1;
+    (*b)[y.str][y.stlb] = 1;
     while (!q.empty()) {
         index tmp = q.front();
         q.pop();
         if (tmp.stlb - 1 > -1) {
             if ((m[tmp.str][tmp.stlb - 1] == 1) &&
-                (b[tmp.str][tmp.stlb - 1] == 1000)) {
-                b[tmp.str][tmp.stlb - 1] = 1;
+                ((*b)[tmp.str][tmp.stlb - 1] == 1000)) {
+                (*b)[tmp.str][tmp.stlb - 1] = 1;
                 temp = new index;
                 temp->str = tmp.str;
                 temp->stlb = tmp.stlb - 1;
@@ -81,8 +81,8 @@ void BFS(std::vector<std::vector<int>> m, std::vector<std::vector<int>> &b,
         }
         if (tmp.str - 1 > -1) {
             if ((m[tmp.str - 1][tmp.stlb] == 1) &&
-                (b[tmp.str - 1][tmp.stlb] == 1000)) {
-                b[tmp.str - 1][tmp.stlb] = 1;
+                ((*b)[tmp.str - 1][tmp.stlb] == 1000)) {
+                (*b)[tmp.str - 1][tmp.stlb] = 1;
                 temp = new index;
                 temp->str = tmp.str - 1;
                 temp->stlb = tmp.stlb;
@@ -91,8 +91,8 @@ void BFS(std::vector<std::vector<int>> m, std::vector<std::vector<int>> &b,
         }
         if (tmp.stlb + 1 < mSize) {
             if ((m[tmp.str][tmp.stlb + 1] == 1) &&
-                (b[tmp.str][tmp.stlb + 1] == 1000)) {
-                b[tmp.str][tmp.stlb + 1] = 1;
+                ((*b)[tmp.str][tmp.stlb + 1] == 1000)) {
+                (*b)[tmp.str][tmp.stlb + 1] = 1;
                 temp = new index;
                 temp->str = tmp.str;
                 temp->stlb = tmp.stlb + 1;
@@ -101,8 +101,8 @@ void BFS(std::vector<std::vector<int>> m, std::vector<std::vector<int>> &b,
         }
         if (tmp.str + 1 < mSize) {
             if ((m[tmp.str + 1][tmp.stlb] == 1) &&
-                (b[tmp.str + 1][tmp.stlb] == 1000)) {
-                b[tmp.str + 1][tmp.stlb] = 1;
+                ((*b)[tmp.str + 1][tmp.stlb] == 1000)) {
+                (*b)[tmp.str + 1][tmp.stlb] = 1;
                 temp = new index;
                 temp->str = tmp.str + 1;
                 temp->stlb = tmp.stlb;
@@ -118,19 +118,19 @@ std::vector<std::vector<int>> PercolationWidth(std::vector<std::vector<int>>
     index y;
     y.str = 0;
     for (y.stlb = 0; y.stlb < mSize; ++y.stlb) {
-        if (m[y.str][y.stlb] == 1) BFS(m, b, y);
+        if (m[y.str][y.stlb] == 1) BFS(m, &b, y);
     }
     y.str = mSize-1;
     for (y.stlb = 0; y.stlb < mSize; ++y.stlb) {
-        if (m[y.str][y.stlb] == 1) BFS(m, b, y);
+        if (m[y.str][y.stlb] == 1) BFS(m, &b, y);
     }
     y.stlb = 0;
     for (y.str = 0; y.str < mSize; ++y.str) {
-        if (m[y.str][y.stlb] == 1) BFS(m, b, y);
+        if (m[y.str][y.stlb] == 1) BFS(m, &b, y);
     }
     y.stlb = mSize-1;
     for (y.str = 0; y.str < mSize; ++y.str) {
-        if (m[y.str][y.stlb] == 1) BFS(m, b, y);
+        if (m[y.str][y.stlb] == 1) BFS(m, &b, y);
     }
     for (int i = 1; i < mSize-1; ++i)
         for (int j = 1; j < mSize-1; ++j)
