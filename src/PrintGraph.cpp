@@ -12,8 +12,8 @@ char filename[]) {
     "node [shape=\"circle\", style=\"filled\", fillcolor=\"blue\", " <<
     "fontcolor=\"#FFFFFF\", margin=\"0.01\"];"
         << std::endl << "edge [dir=\"both\"];" << std::endl;
-    for (int i = 0; i < gr.size(); ++i)
-        for (int j = 0; j < gr[i].size(); ++j)
+    for (int i = 0; i < static_cast<int>(gr.size()); ++i)
+        for (int j = 0; j < static_cast<int>(gr[i].size()); ++j)
             if (m[i][gr[i][j].first] == 0) {
                 m[i][gr[i][j].first] = 1;
                 m[gr[i][j].first][i] = 1;
