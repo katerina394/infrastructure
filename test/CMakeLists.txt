@@ -6,7 +6,8 @@ file(GLOB HPPS ../include/*.h ../include/*.hpp)
 find_package(Threads)
 
 if(MSVC)
-     #vc 2012 fix for vararg templates
+  CONFIGURE_FILE(../test/GraphAdjacencyList.txt ${tests} GraphAdjacencyList) 
+  CONFIGURE_FILE(../test/GraphMatrixOfIncidence.txt ${tests} GraphMatrixOfIncidence)  #vc 2012 fix for vararg templates
      ADD_DEFINITIONS (/D_VARIADIC_MAX=10)
      MESSAGE(STATUS "MSVC: Set variadic max to 10 for MSVC compatibility")
 endif() 
