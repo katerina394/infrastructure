@@ -3,8 +3,8 @@
 TEST(STPrim, work_right_for_graph_with_one_vertex) {
     vector < vector < pair<int, int> > > gr(1);
     vector < vector < pair<int, int> > > res = STPrim(gr);
-    EXPECT_EQ(res.size(), 1);
-    EXPECT_EQ(res[0].size(), 0);
+    EXPECT_EQ(static_cast<int>(res.size()), 1);
+    EXPECT_EQ(static_cast<int>(res[0].size()), 0);
 }
 TEST(STPrim, work_right_for_graph_which_equel_his_spanning_tree) {
     vector < vector < pair<int, int> > > gr(3);
@@ -62,7 +62,7 @@ TEST(STPrim, work_right_for_connected_graph_with_five_vertexes) {
     EXPECT_EQ(res[1][0].second, 1);
     EXPECT_EQ(res[2][0].first, 3);
     EXPECT_EQ(res[2][0].second, 5);
-    EXPECT_EQ(res[3].size(), 3);
+    EXPECT_EQ(static_cast<int>(res[3].size()), 3);
     bool f1 = 0, f2 = 0, f3 = 0;
     for (int i = 0; i < 3; ++i) {
         if (res[3][i] == pair<int, int>(0, 2)) f1 = 1;
@@ -70,7 +70,7 @@ TEST(STPrim, work_right_for_connected_graph_with_five_vertexes) {
         if (res[3][i] == pair<int, int>(2, 5)) f3 = 1;
     }
     EXPECT_EQ(f1*f2*f3, 1);
-    EXPECT_EQ(res[4].size(), 2);
+    EXPECT_EQ(static_cast<int>(res[4].size()), 2);
     f1 = 0;
     f2 = 0;
     for (int i = 0; i < 2; ++i) {

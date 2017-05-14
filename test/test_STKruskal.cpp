@@ -6,9 +6,9 @@ TEST(STKruskal, work_right_for_graph_with_one_vertex) {
     vector < vector<int> > res(1);
     vector<int> wres;
     STKruskal(gr, w, &res, &wres);
-    EXPECT_EQ(res.size(), 1);
-    EXPECT_EQ(res[0].size(), 0);
-    EXPECT_EQ(wres.size(), 0);
+    EXPECT_EQ(static_cast<int>(res.size()), 1);
+    EXPECT_EQ(static_cast<int>(res[0].size()), 0);
+    EXPECT_EQ(static_cast<int>(wres.size()), 0);
 }
 TEST(STKruskal, work_right_for_graph_which_equel_his_spanning_tree) {
     vector < vector<int> > gr(3, vector<int>(2, 1));
@@ -81,7 +81,7 @@ TEST(STKruskal, work_right_for_connected_graph_with_five_vertexes) {
     wexp[2] = 2;
     wexp[3] = 5;
     for (int i = 0; i < static_cast<int>(exp.size()); ++i)
-        for (int j = 0; j < exp[i].size(); ++j)
+        for (int j = 0; j < static_cast<int>(exp[i].size()); ++j)
             EXPECT_EQ(exp[i][j], res[i][j]);
     for (int i = 0; i < static_cast<int>(wexp.size()); ++i)
         EXPECT_EQ(wexp[i], wres[i]);
