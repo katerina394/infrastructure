@@ -9,7 +9,7 @@ std::vector<int> Ksets(std::vector<std::pair<int, int>> a, int n) {
             for (int j = i+1; j < n; ++j)
                 if (res[j] == j) {
                     bool f = 1;
-                    for (int k = 0; k < a.size(); ++k)
+                    for (int k = 0; k < static_cast<int>(a.size()); ++k)
                         if ( ( (res[a[k].first] == i) && (a[k].second == j) )
                             || ( (a[k].first == j) && (res[a[k].second] == i)))
                             f = 0;
