@@ -17,7 +17,8 @@ vector < vector < pair<int, int> > > CreateGraphAdjacencyList(char filename[]) {
     }
     return g;
 }
-void CreateGraphMatrixOfIncidence(char filename[], vector<vector<int>> *gr, vector<int> *w) {
+void CreateGraphMatrixOfIncidence(char filename[], vector<vector<int>> *gr,
+vector<int> *w) {
     std::ifstream file(filename);
     int n, m;
     file >> n >> m;

@@ -14,7 +14,7 @@ int main(int argc, char *argv[]) {
         STKruskal(gr, w, &res, &wres);
         PrintGraphMatrixOfIncidence(gr, w, res, argv[3]);
     } else {
-        vector < vector < pair<int, int> > > gr = CreateGraphAdjacencyList(argv[2]);
+        vector <vector<pair<int, int>>> gr = CreateGraphAdjacencyList(argv[2]);
         vector<vector<pair<int, int>>> res = STPrim(gr);
         PrintGraphAdjacencyList(gr, res, argv[3]);
     }
