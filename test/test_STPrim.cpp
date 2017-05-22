@@ -51,11 +51,9 @@ TEST(STPrim, work_right_for_complete_graph_with_three_vertexes) {
 TEST(STPrim, work_right_for_connected_graph_with_five_vertexes) {
     char filename1[] = "GraphAdjacencyList";
     vector < vector < pair<int, int> > > gr = CreateGraphAdjacencyList(filename1);
-    char filename2[] = "connected_graph_with_five_vertexes_a_l.txt";
-    PrintGraphAdjacencyList(gr, filename2);
     vector<vector<pair<int, int>>> res = STPrim(gr);
     char filename3[] = "spanning_tree_with_five_vertexes_Prim.txt";
-    PrintGraphAdjacencyList(res, filename3);
+    PrintGraphAdjacencyList(gr, res, filename3);
     EXPECT_EQ(res[0][0].first, 3);
     EXPECT_EQ(res[0][0].second, 2);
     EXPECT_EQ(res[1][0].first, 4);

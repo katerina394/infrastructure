@@ -67,13 +67,11 @@ TEST(STKruskal, work_right_for_connected_graph_with_five_vertexes) {
     vector<vector<int>> gr;
     vector<int> w;
     CreateGraphMatrixOfIncidence(filename1, &gr, &w);
-    char filename2[] = "connected_graph_with_five_vertexes_m_of_i.txt";
-    PrintGraphMatrixOfIncidence(gr, w, filename2);
     vector < vector<int> > res(5, vector<int>(4));
     vector<int> wres;
     STKruskal(gr, w, &res, &wres);
     char filename3[] = "spanning_tree_with_five_vertexes_Kruskal.txt";
-    PrintGraphMatrixOfIncidence(res, wres, filename3);
+    PrintGraphMatrixOfIncidence(gr, w, res, filename3);
     vector < vector<int> > exp(5, vector<int>(4, 0));
     exp[0][2] = exp[1][0] = exp[2][3] = exp[3][1] =
     exp[3][2] = exp[3][3] = exp[4][0] = exp[4][1] = 1;
