@@ -5,6 +5,7 @@
 #define pair std::pair
 #define vector std::vector
 int main(int argc, char *argv[]) {
+    int n = argc;
     if (*(argv[1]) == '1') {
         vector<vector<int>> gr;
         vector<int> w;
