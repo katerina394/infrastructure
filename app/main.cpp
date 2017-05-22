@@ -4,7 +4,7 @@
 #include <utility>
 #define pair std::pair
 #define vector std::vector
-int main(char *argv[]) {
+int main(int argc, char *argv[]) {
     if (*(argv[1]) == '1') {
         vector<vector<int>> gr;
         vector<int> w;
